@@ -5,7 +5,7 @@ import { GetDataService } from "./api/GetDataService";
 import { Header } from "./components/Header";
 import { Content } from "./components/Content";
 import { Information } from "./components/Information";
-import { backgroundColor } from "./config/constants";
+import { BACKGROUND_COLOR } from "./config/constants";
 
 
 export const App = () => {
@@ -31,17 +31,17 @@ export const App = () => {
   });
 
   const getRand = () => {
-    const rand = Math.floor(Math.random()*(backgroundColor.length));
+    const rand = Math.floor(Math.random()*(BACKGROUND_COLOR.length));
     return rand;
   };
 
   const getBackground = () => {
     let rand = getRand();
     setBackground((prev) => {
-      while (prev === backgroundColor[rand]) {
+      while (prev === BACKGROUND_COLOR[rand]) {
         rand = getRand();
       };
-      return backgroundColor[rand];
+      return BACKGROUND_COLOR[rand];
     })
   };
 
