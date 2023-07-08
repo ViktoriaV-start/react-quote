@@ -26,23 +26,19 @@ export const App = () => {
       const author = result.getElementsByTagName("quoteAuthor");
       setQuote(quote?.[0].innerHTML);
       setAuthor(author?.[0].innerHTML)
-      getBackground();
+      setBackground(getBackground());
     }
   });
 
-  const getRand = () => {
-    const rand = Math.floor(Math.random()*(BACKGROUND_COLOR.length));
-    return rand;
-  };
-
   const getBackground = () => {
-    let rand = getRand();
-    setBackground((prev) => {
-      while (prev === BACKGROUND_COLOR[rand]) {
-        rand = getRand();
-      };
-      return BACKGROUND_COLOR[rand];
-    })
+      const colorCount = BACKGROUND_COLOR.length;
+
+      if(!background) return BACKGROUND_COLOR[0];
+      
+      const idx = BACKGROUND_COLOR.indexOf(background);
+      if(idx === (colorCount-1)) return BACKGROUND_COLOR[0];
+  
+      return BACKGROUND_COLOR[idx+1];
   };
 
   useEffect(() => {
